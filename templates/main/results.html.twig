@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All posts {% endblock %}
+
+{% block body %}
+
+{# {{ dump(video.items) }} #}
+ <ul>
+{% for item in video.items %}
+
+<li class="card">
+    <h3 class="card-title">{{ item.snippet.title }}</h3>
+    <p class="card-description">{{ item.snippet.description }}</p>
+
+    
+   {% if item.id.videoId is defined %}
+    <div class="card-video">
+   <iframe src="https://www.youtube.com/embed/{{item.id.videoId}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+ </div>
+   {# <a href="https://www.youtube.com/watch?v={{item.id.videoId}}" target="_blank">Regarder sur YouTube</a> #}
+    
+   {% endif %}
+</li> 
+     
+{% endfor %}
+</ul> 
+{% endblock %}

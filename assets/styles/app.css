@@ -1,0 +1,91 @@
+body {
+    background-color: #f4f4f9;
+}
+/* Style de la table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des lignes impaires */
+table tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Style des lignes paires */
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+/* Style des en-têtes */
+table th {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px 15px;
+}
+
+/* Style des cellules */
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+/* Style des cellules au survol */
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Bordure et arrondi pour toute la table */
+table {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+ul{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin: 20px;
+}
+
+.card-title {
+    font-size: 24px;
+    margin: 20px 0 10px;
+    color: #333;
+}
+
+.card-description {
+    font-size: 16px;
+    margin: 0 20px 20px;
+    color: #666;
+}
+
+.card-video iframe {
+    width: 100%;
+    height: 315px;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .card-video iframe {
+        height: 250px;
+    }
+}
