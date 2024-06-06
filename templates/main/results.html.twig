@@ -5,23 +5,43 @@
 {% block body %}
 
 {# {{ dump(video.items) }} #}
- <ul>
-{% for item in video.items %}
 
-<li class="card">
-    <h3 class="card-title">{{ item.snippet.title }}</h3>
-    <p class="card-description">{{ item.snippet.description }}</p>
+ {{form_start(formSearch)}}
+ <h1> Cherchez une video </h1>
+  {{form_row(formSearch.tag)}}
+  <button type="submit" class="button">{{button_label|default('chercher')}}</button>
 
+ {{form_end(formSearch)}}
+
+{% if videos is defined %}
+
+{# {{ dump(videos.items) }} #}
+
+<ul>
+    {% for item in videos.items %}
+   
+   <li class="card">
+       <h2 class="card-title">{{ item.snippet.channelTitle }}</h2>
+       <h2>{{ item.snippet.publishedAt|date("m/d/Y", "Europe/Paris") }}</h2>
+       <h3 class="card-title">{{ item.snippet.title }}</h3>
+       <h4> Nombre de vues : {{ item.statistics.viewCount|number_format}}</h4>
+       {% if item.statistics.likeCount is defined %}
+       <h4> Nombre de likes : {{ item.statistics.likeCount|number_format}}</h4>
+       {% endif %}
+
+        <p class="card-description">{{ item.snippet.description }}</p> 
+
+      {% if item.id is defined %}
+       <div class="card-video">
+      <iframe src="https://www.youtube.com/embed/{{item.id}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+       
+      {% endif %}
+   </li> 
+        
+   {% endfor %} 
+</ul>  
     
-   {% if item.id.videoId is defined %}
-    <div class="card-video">
-   <iframe src="https://www.youtube.com/embed/{{item.id.videoId}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
- </div>
-   {# <a href="https://www.youtube.com/watch?v={{item.id.videoId}}" target="_blank">Regarder sur YouTube</a> #}
-    
-   {% endif %}
-</li> 
-     
-{% endfor %}
-</ul> 
+{% endif %}
+
 {% endblock %}

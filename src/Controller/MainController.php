@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\SearchTagFormType;
 use App\Service\ApiService;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -34,19 +35,54 @@ class MainController extends AbstractController
 
     #[Route('/youtube', name: 'youtube')]
     
-    public function youtube(ApiService $apiService): Response
+    public function youtube(ApiService $apiService, Request $request): Response
     {
-
-     try{
-          $video = $apiService->searchVideo('YoanDev', 20);
         
-     }catch(Exception $e){
-        throw new \Exception('Failed to fetch data from YouTube API');
-     }
+        $form = $this->createForm(SearchTagFormType::class);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->get('tag')->getData();
+            
+            
+        if ($data !== null) {
+
+            try{
+                $datas = $apiService->searchVideo($data, 30);
+                // dd($datas);
+                return $this->render('main/results.html.twig', [
+                 'videos'=> $datas,
+                 'formSearch' => $form
+                ]);
+            }catch(Exception $e){
+                throw new \Exception('echec de recuperation de la recherche sur YouTube API');
+             } 
+
+        }            
+        //    try{
+
+        //     return $this->redirectToRoute('youtube', [
+        //         'tag' => $data,
+        //     ]);
+        //    }catch(Exception $e){
+        //       throw new \Exception('echec de recuperation de la recherche sur YouTube API');
+        //    }     
+
+        }
+
+        // $tag = $request->query->get('tag');      
+        // if ($tag !== null) {
+        // $video = $apiService->searchVideo($tag, 30);
+        //    return $this->render('main/results.html.twig', [
+        //     'video'=> $video,
+        //     'formSearch' => $form
+        //    ]);
+        // }
 
         return $this->render('main/results.html.twig', [
-            'video' => $video,
+            
+            'formSearch' => $form
         ]);
+
     }
 }
