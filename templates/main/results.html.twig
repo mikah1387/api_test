@@ -22,14 +22,14 @@
    
    <li class="card">
        <h2 class="card-title">{{ item.snippet.channelTitle }}</h2>
-       <h2>{{ item.snippet.publishedAt|date("m/d/Y", "Europe/Paris") }}</h2>
-       <h3 class="card-title">{{ item.snippet.title }}</h3>
+       <h2 class="card-title">{{ item.snippet.publishedAt|date("m/d/Y", "Europe/Paris") }}</h2>
+       <h3 class="card-title">{{ item.snippet.title|slice(0, 30) }}</h3>
        <h4> Nombre de vues : {{ item.statistics.viewCount|number_format}}</h4>
        {% if item.statistics.likeCount is defined %}
        <h4> Nombre de likes : {{ item.statistics.likeCount|number_format}}</h4>
        {% endif %}
 
-        <p class="card-description">{{ item.snippet.description }}</p> 
+        <p class="card-description">{{ item.snippet.description|striptags|slice(0, 200) }}</p> 
 
       {% if item.id is defined %}
        <div class="card-video">

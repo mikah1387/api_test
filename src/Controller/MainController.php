@@ -20,13 +20,13 @@ class MainController extends AbstractController
 
      $response = $client->request(
         'GET',
-        'https://jsonplaceholder.typicode.com/comments'
+        'https://www.vinted.fr/vetements?search_text'
 
      );
 
      $posts = json_decode($response->getContent(), true);
 
-
+     dd($posts);
 
         return $this->render('main/index.html.twig', [
             'posts' => $posts,

@@ -51,37 +51,48 @@ table {
 ul{
 
     display: flex;
+    list-style: none;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 .card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 100%;
-    max-width: 600px;
-    text-align: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 30%;
     margin: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card-title {
     font-size: 24px;
-    margin: 20px 0 10px;
-    color: #333;
+    color: #0b0b0b;
+    margin-bottom: 20px;
+    text-align: center;
+
 }
 
 .card-description {
     font-size: 16px;
-    margin: 0 20px 20px;
-    color: #666;
+    color: #555;
+    margin-bottom: 15px;
+    text-align: center;
+
 }
 
-.card-video iframe {
-    width: 100%;
-    height: 315px;
+.card-video  {
+    width: 95%;
+    margin: 10px auto;
+    height: 300px;
     border: none;
+    border-radius: 4px;
+}
+iframe{
+
+    width: 100%;
+    height: 100%;
 }
 
 @media (max-width: 768px) {

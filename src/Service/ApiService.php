@@ -41,12 +41,12 @@ class ApiService
          
          $datas = json_decode($response->getContent(), true);
 
-         $videoIds = array_map(fn($item) => $item['id']['videoId'], $datas['items']);
+        //  $videoIds = array_map(fn($item) => $item['id']['videoId'], $datas['items']);
 
-         return $this->getVideosDetails($videoIds);
+        //  return $this->getVideosDetails($videoIds);
      
         //  dd($datas);
-        // return   $datas;
+        return   $datas;
          
     }
 
